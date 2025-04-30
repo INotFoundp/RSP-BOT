@@ -8,9 +8,20 @@ export class JoinUserToGameHandler extends CallBackQuery {
   async handler(query: TelegramBot.CallbackQuery): Promise<void> {
 
 
-
     const [q, id, name] = query.data.split("-")
 
+    const user = await prisma.users.findUnique({
+      where: {
+        numberId: id
+      }
+    })
+
+    if (!user) {
+      await this.bot.answerCallbackQuery(query.id, {
+        text: "لطفا ابتدا ربات را استارت بزنید",
+        show_alert: true,
+      })
+    }
 
     if (id === query.from.id + "") {
       await this.bot.answerCallbackQuery(query.id, {
@@ -55,9 +66,9 @@ export class JoinUserToGameHandler extends CallBackQuery {
 
 `, {
           inline_message_id: query.inline_message_id,
-          reply_markup : {
-            inline_keyboard : [
-              [{text : "بزن بریم! 🚀" , callback_data : `start_game-${game.starterId}-${game.staterName}`}]
+          reply_markup: {
+            inline_keyboard: [
+              [{text: "بزن بریم! 🚀", callback_data: `start_game-${game.starterId}-${game.staterName}`}]
             ]
           }
         });

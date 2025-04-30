@@ -49,7 +49,6 @@ export default class NewGameHandler extends CallBackQuery {
     const isPlayerChoice = (starterChoice === playerChoice ? "tie" : undefined) ?? (items[starterChoice] === playerChoice ? "player" : "starter")
 
 
-
     const game = await prisma.game.update({
       where: {messageId},
       data: {
@@ -187,6 +186,16 @@ export default class NewGameHandler extends CallBackQuery {
 
 
       if (choices.player.score == 3 || choices.starter.score == 3) {
+
+        await prisma.game.update({
+          where: {
+            messageId: game.messageId
+          },
+          data: {
+            status: "ENDED"
+          }
+        })
+
         await this.bot.editMessageText(
           `بازی تموم شد !
 
