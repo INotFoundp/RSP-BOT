@@ -1,0 +1,12 @@
+{
+  "name": "Rock Scissors Paper",
+  "vars": [
+    {
+      "key": "BOT_TOKEN",
+      "label": "ENTER Your Token"
+    }
+  ],
+  "config" : {
+    "pre" : "npx prisma db push"
+  }
+}

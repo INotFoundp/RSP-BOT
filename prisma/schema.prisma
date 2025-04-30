@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./main.db"
+}
+
+model Admin {
+  id       Int    @id @unique @default(autoincrement())
+  numberId String @unique
+  username String
+  fullName String
+}
+
+model Users {
+  id        String  @id @default(uuid())
+  numberId  String  @unique
+  username  String?
+  firstname String?
+  lastname  String?
+  games     Game[]
+}
+
+model Game {
+  id            String   @id @default(uuid())
+  playerId      String
+  playerName    String
+  starterId     String
+  staterName    String
+  expireAt      DateTime
+  starterChoice String?
+  playerChoice  String?
+  userId        String
+  starterScore  Int      @default(0)
+  playerScore   Int      @default(0)
+  messageId     String   @unique
+  status        String   @default("PEDNING")
+  user          Users    @relation(fields: [userId], references: [numberId], onDelete: Cascade, onUpdate: Cascade)
+}
