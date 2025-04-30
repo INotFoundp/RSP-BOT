@@ -40,10 +40,6 @@ export class BotHandler {
         await this.inlineQueryHandler.handler(query)
       });
 
-      this.bot.on("chosen_inline_result", result => {
-        console.log(`chosen ${result}  from here`)
-      })
-
 
       this.bot.on("callback_query", query => {
 

@@ -59,7 +59,7 @@ export default class NewGameHandler extends CallBackQuery {
         starterScore: {increment: isPlayerChoice === "starter" ? 1 : 0}
       }
     })
-    
+
     return {player: game.playerScore, starter: game.starterScore, roundWinner: isPlayerChoice}
 
   }
@@ -185,8 +185,6 @@ export default class NewGameHandler extends CallBackQuery {
         name: data.currentTurnId === data.starterId ? game.staterName : game.playerName
       };
 
-
-      console.log(choices)
 
       if (choices.player.score == 3 || choices.starter.score == 3) {
         await this.bot.editMessageText(

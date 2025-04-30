@@ -6,9 +6,7 @@ export class InlineQueryHandler {
   }
 
   async gameCreator(from: TelegramBot.User): Promise<string> {
-    this.bot.on("chosen_inline_result", result => {
-      console.log("TEST", result.query)
-    })
+
 
     return `سلام ، کاربر ${from.first_name} شمارو به بازی دعوت کرده 
 
@@ -23,10 +21,6 @@ export class InlineQueryHandler {
 
   async handler(query: TelegramBot.InlineQuery) {
 
-    this.bot.on("chosen_inline_result", result => {
-
-      console.log("TEST", result.query)
-    })
 
     const {from} = query
     const user = await prisma.users.findUnique({

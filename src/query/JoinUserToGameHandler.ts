@@ -7,7 +7,7 @@ export class JoinUserToGameHandler extends CallBackQuery {
 
   async handler(query: TelegramBot.CallbackQuery): Promise<void> {
 
-    console.log(query)
+
 
     const [q, id, name] = query.data.split("-")
 
