@@ -40,8 +40,6 @@ export abstract class Command {
 
       const data = await _f.json()
 
-      console.log("DATA:", data)
-
       const status = data?.result?.status;
       if (!['member', 'administrator', 'creator'].includes(status)) {
         mustBeJoin.push({id: channel.id, status})
