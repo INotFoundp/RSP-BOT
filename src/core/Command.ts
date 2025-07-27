@@ -49,8 +49,6 @@ export abstract class Command {
 
 
     if (mustBeJoin.length) {
-
-
       await this.bot.sendMessage(message.chat.id, "کاربرگرامی لطفا برای استفاده از ربات عضو کانال های زیر شوید", {
         reply_markup: {
           inline_keyboard: [
